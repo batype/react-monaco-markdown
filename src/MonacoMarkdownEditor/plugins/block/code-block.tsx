@@ -1,9 +1,10 @@
+import React from "react";
 import Icon from "../../components/Icon";
 import i18n from "../../i18n";
 import { MonacoMarkdownEditorConText } from "../../context";
 
 export const BlockCodeBlock = () => {
-  const pluginName = "block-code-block";
+  // const pluginName = "block-code-block";
   const { insertMarkdown } = MonacoMarkdownEditorConText.useContainer();
   return (
     <span

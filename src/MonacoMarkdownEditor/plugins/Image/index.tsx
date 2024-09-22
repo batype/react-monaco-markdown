@@ -6,7 +6,7 @@ import InputFile from "./inputFile";
 import { MonacoMarkdownEditorConText } from "../../context";
 
 export const Image = () => {
-  const pluginName = "image";
+  // const pluginName = "image";
 
   const inputFile: React.RefObject<InputFile> = React.createRef();
 

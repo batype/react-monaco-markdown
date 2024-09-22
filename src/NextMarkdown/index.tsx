@@ -40,7 +40,7 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
   // )
 
   const components: Components | null | undefined = {
-    code({ node, className, children, ...props }) {
+    code({ className, children }) {
       const match = /language-(\w+)/.exec(className || "");
       return match?.length ? (
         <>
@@ -53,7 +53,7 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
             style={styleMd.dark}
             lineNumberStyle={{ color: "#ddd", fontSize: 16 }}
             wrapLines={false}>
-            {String(children).replace(/\n$/, "")}
+            {children ? String(children).replace(/\n$/, "") : ""}
           </SyntaxHighlighter>
         </>
       ) : (

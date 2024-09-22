@@ -3,7 +3,7 @@ import i18n from "../../i18n";
 import Icon from "../../components/Icon";
 import { useMonaco } from "@monaco-editor/react";
 
-const LOGGER_INTERVAL = 600;
+// const LOGGER_INTERVAL = 600;
 
 export const Logger = () => {
   // const pluginName = "logger";
@@ -24,8 +24,8 @@ export const Logger = () => {
       const editor = monaco.editor.getEditors()[0];
       const model = editor?.getModel();
       if (model) {
-        const data = editor.getContribution("undo");
-        console.log("data", data);
+        // const data = editor.getContribution("undo");
+        // console.log("data", data);
         return true;
       }
     }
@@ -57,16 +57,14 @@ export const Logger = () => {
       <span
         className={`button button-type-undo ${canRedo() ? "" : "disabled"}`} //
         title={i18n.get("btnUndo")}
-        onClick={handleUndo}
-      >
-        <Icon type="undo" />
+        onClick={handleUndo}>
+        <Icon type='undo' />
       </span>
       <span
         className={`button button-type-redo ${canUndo() ? "" : "disabled"}`} //
         title={i18n.get("btnRedo")}
-        onClick={handleRedo}
-      >
-        <Icon type="redo" />
+        onClick={handleRedo}>
+        <Icon type='redo' />
       </span>
     </React.Fragment>
   );

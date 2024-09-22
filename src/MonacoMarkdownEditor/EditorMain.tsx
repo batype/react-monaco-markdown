@@ -2,14 +2,13 @@
  * @author shaosong
  * @description
  */
-import React from "react";
+import React, { useEffect } from "react";
 import "./style.less";
 import Editor from "./Editor";
 import { IndexProps } from "./index";
 import { MonacoMarkdownEditorConText } from "./context";
 import NavigationBar from "./components/NavigationBar";
 import { Header } from "./plugins/header";
-import NextIcon from "./components/NextIcon";
 import { FontBold } from "./plugins/font/bold";
 import { FontItalic } from "./plugins/font/italic";
 import { FontStrikethrough } from "./plugins/font/strikethrough";
@@ -25,47 +24,78 @@ import { FontUnderline } from "./plugins/font/underline";
 import { Link } from "./plugins/link";
 import { Clear } from "./plugins/clear";
 import { Logger } from "./plugins/logger";
+import { Operate } from "./plugins/operate";
+import { ModeToggle } from "./plugins/modeToggle";
+import clsx from "clsx";
+import { FullScreen } from "./plugins/fullScreen";
+import NextMarkdown from "../NextMarkdown";
 
 const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
-  const { markdown } = MonacoMarkdownEditorConText.useContainer();
+  const { markdown, view, isFullScreen, registerLeftOperate, leftOperate } =
+    MonacoMarkdownEditorConText.useContainer();
+
+  useEffect(() => {
+    registerLeftOperate([
+      Header,
+      FontBold,
+      FontItalic,
+      FontUnderline,
+      FontStrikethrough,
+      ListUnordered,
+      ListOrdered,
+      BlockQuote,
+      BlockWrap,
+      BlockCodeInline,
+      BlockCodeBlock,
+      Table,
+      Image,
+      Link,
+      Clear,
+      Logger,
+      Operate,
+    ]);
+  }, []);
+
   return React.useMemo(
     () => (
-      <div className="monaco-markdown-editor">
-        <div className="header-tooltip">
+      <div className={clsx("monaco-markdown-editor", isFullScreen && "full")}>
+        <div className='header-tooltip'>
           <NavigationBar
             visible={true}
-            left={[
-              <Header key={"Header"} />,
-              <FontBold key={"FontBold"} />,
-              <FontItalic key={"FontItalic"} />,
-              <FontUnderline key={"FontUnderline"} />,
-              <FontStrikethrough key={"FontStrikethrough"} />,
-              <ListUnordered key={"ListUnordered"} />,
-              <ListOrdered key={"ListOrdered"} />,
-              <BlockQuote key={"BlockQuote"} />,
-              <BlockWrap key={"BlockWrap"} />,
-              <BlockCodeInline key={"BlockCodeInline"} />,
-              <BlockCodeBlock key={"BlockCodeBlock"} />,
-              <Table key={"Table"} />,
-              <Image key={"Image"} />,
-              <Link key={"Link"} />,
-              <Clear key={"Clear"} />,
-              <Logger key={"Logger"} />,
+            left={leftOperate?.map((Item, index) => (
+              <Item key={String(index)} />
+            ))}
+            right={[
+              <ModeToggle key={"ModeToggle"} />,
+              <FullScreen key={"FullScreen"} />,
             ]}
-            right={<NextIcon type="font-size" />}
           />
         </div>
-        <div className="editor-content">
-          <div className="editor-content-left">
+        <div className='editor-content'>
+          <div
+            className={clsx(
+              "editor-content-left",
+              !view?.md && "hidden",
+              view?.md && !view?.html && "w-full"
+            )}>
             <Editor />
           </div>
-          <div className="editor-content-right">
-            {props?.renderHtml?.({ text: markdown })}
+          <div
+            className={clsx(
+              "editor-content-right",
+              !view?.html && "hidden",
+              !view?.md && view?.html && "w-full"
+            )}>
+            {props?.renderHtml ? (
+              props?.renderHtml?.({ text: markdown })
+            ) : (
+              <NextMarkdown id={""} code={markdown} />
+            )}
           </div>
         </div>
       </div>
     ),
-    [markdown, props]
+    [markdown, props, view, isFullScreen, leftOperate]
   );
 };
 

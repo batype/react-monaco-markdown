@@ -2,6 +2,7 @@ import * as monaco from "monaco-editor";
 import { loader } from "@monaco-editor/react";
 import MonacoEditor from "@monaco-editor/react";
 import { MonacoMarkdownEditorConText } from "./context";
+import React from "react";
 
 type Props = {
   value?: string | undefined;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 function Editor({ height, isREadOnly, language, theme }: Props) {
-  const { markdown, changeMarkdown } =
+  const { markdown, changeMarkdown, handleEditorDidMount } =
     MonacoMarkdownEditorConText.useContainer();
 
   loader.config({
@@ -29,13 +30,14 @@ function Editor({ height, isREadOnly, language, theme }: Props) {
       //   }
       // }}
       language={language || "markdown"}
-      width="100%"
+      width='100%'
       value={markdown}
       height={height || "100%"}
       defaultValue='const aaa="bbbbxxx"'
       onChange={(value: string | undefined) => {
         if (changeMarkdown) changeMarkdown?.(value);
       }}
+      onMount={handleEditorDidMount}
       options={{
         theme: theme || "light", // 编辑器主题颜色
         folding: true, // 是否折叠

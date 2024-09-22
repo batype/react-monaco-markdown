@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# react-monaco-markdown
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![NPM version](https://img.shields.io/npm/v/react-monaco-markdown.svg?style=flat)](https://npmjs.org/package/react-monaco-markdown)
+[![NPM downloads](http://img.shields.io/npm/dm/react-monaco-markdown.svg?style=flat)](https://npmjs.org/package/react-monaco-markdown)
 
-Currently, two official plugins are available:
+react-monaco-markdown
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+pnpm i react-monaco-markdown
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Options
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```ts
+import ReactMonacoMarkdown from 'react-monaco-markdown'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+<ReactMonacoMarkdown
+    value={'**Hello react-monaco-markdown!!!**'}
+    onChange={pre => changeData(pre.text)}
+/>
 ```
+
+## Development
+
+```bash
+# install dependencies
+$ pnpm install 
+
+# develop library by docs demo
+$ pnpm start
+
+# build library source code
+$ pnpm run build
+
+# build library source code in watch mode
+$ pnpm run build:watch
+
+# build docs
+$ pnpm run docs:build
+
+# Locally preview the production build.
+$ pnpm run docs:preview
+
+# check your project for potential problems
+$ pnpm run doctor
+```
+
+## LICENSE
+
+MIT

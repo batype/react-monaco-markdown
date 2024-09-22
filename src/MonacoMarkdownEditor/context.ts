@@ -4,8 +4,8 @@ import { IndexProps } from "./index";
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
 import { EditorConfig, KeyboardEventListener, EditorEvent } from "./share/var";
-import { useMonaco } from "@monaco-editor/react";
-import { editor, IPosition, IRange, Selection } from "monaco-editor";
+import { Monaco, useMonaco } from "@monaco-editor/react";
+import { editor, IRange, Selection } from "monaco-editor";
 import getDecorated, { Decorated, SelectionType } from "./utils/decorate";
 import emitter from "./share/emitter";
 
@@ -13,6 +13,15 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
   const [markdown, changeMarkdown] = useState<string | undefined>("");
   const [html, changeHtml] = useState<string | undefined>("");
   const [editorConfig, changeEditorConfig] = useState<EditorConfig>();
+  const [isFullScreen, changeIsFullScreen] = useState(false);
+  const [leftOperate, ChangeLeftOperate] = useState<(() => JSX.Element)[]>([]);
+  const [view, changeView] = useState<{
+    md: boolean;
+    html: boolean;
+  }>({
+    md: true,
+    html: false,
+  });
 
   const monaco = useMonaco();
 
@@ -152,14 +161,21 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
   /**
    * Set selected
    * @param {editor.ICodeEditor | null} editor
-   * @param {IPosition} position
+   * @param {IRange} position
    */
   const setSelection = (
     editor: editor.ICodeEditor | null,
-    position: IPosition
+    position: IRange
   ) => {
     if (editor) {
-      editor?.setPosition(position);
+      const selection: IRange = {
+        startColumn: position.startColumn,
+        startLineNumber: position.startLineNumber,
+        endColumn: position.endColumn,
+        endLineNumber: position.endLineNumber,
+      };
+      editor.setSelection(selection);
+      // editor?.setPosition(position);
       editor?.focus();
     }
   };
@@ -244,10 +260,11 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
     const column = (): number => {
       switch (type) {
         case "table":
-          return 7;
+          return 3;
         case "image":
           return (newPosition?.column || 0) - 2;
         case "link":
+        case "inlinecode":
           return 2;
         default:
           return newPosition?.column || 0;
@@ -255,10 +272,11 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
     };
 
     setSelection(editor, {
-      ...newPosition,
-      column: column(),
-      lineNumber: selection?.startLineNumber + (newSelection?.line || 0),
-    } as IPosition);
+      startColumn: column(),
+      startLineNumber: selection?.startLineNumber + (newSelection?.line || 0),
+      endColumn: type === "table" ? 7 : column(),
+      endLineNumber: selection?.startLineNumber + (newSelection?.line || 0),
+    });
   };
 
   /**
@@ -294,7 +312,90 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
     }
   };
 
+  const handleEditorDidMount = (
+    editor: editor.IStandaloneCodeEditor,
+    monaco: Monaco
+  ) => {
+    // 编辑器加载完成后，添加自定义按键监听
+    editor.addCommand(monaco.KeyCode.Enter, () => {
+      const model = editor.getModel();
+      const currentPosition = editor.getPosition();
+      const lines = editor.getValue()?.split("\n");
+      const lineNumber: number = currentPosition?.lineNumber || 0;
+      const currentLineContent = model?.getLineContent(lineNumber);
+      const listMarkerRegex = /^(\s*)([*+-]|\d+\.)\s/;
+      const match = currentLineContent?.match(listMarkerRegex);
+
+      const addLine = (line: number) => {
+        // 如果当前行为空，则删除该行
+        model?.setValue(lines?.join("\n") as string);
+
+        const position = new monaco.Position(
+          lineNumber + line,
+          (lineNumber - 1 ? model?.getLineMaxColumn(lineNumber - 1) : 1) || 1
+        );
+
+        editor.setPosition(position);
+      };
+
+      if (match) {
+        const [fullMatch, indent, marker] = match;
+        // 检查当前行是否为空
+        if (currentLineContent?.trim() === fullMatch?.trim()) {
+          lines[lineNumber - 1] = "";
+          addLine(0);
+        } else {
+          // Otherwise, add a new list item
+          let newMarker = marker;
+
+          // If it's a numbered list, increment the number
+          if (/^\d+$/.test(marker.slice(0, -1))) {
+            const currentNumber = parseInt(marker.slice(0, -1));
+            newMarker = `${currentNumber + 1}.`;
+          }
+
+          const newLinePrefix = `${indent}${newMarker} `;
+          lines.splice(lineNumber, 0, newLinePrefix);
+
+          // Update subsequent numbered list items
+          if (/^\d+$/.test(marker.slice(0, -1))) {
+            for (let i = lineNumber + 1; i < lines.length; i++) {
+              const nextMatch = lines[i].match(listMarkerRegex);
+              if (nextMatch && /^\d+$/.test(nextMatch[2].slice(0, -1))) {
+                const nextNumber = parseInt(nextMatch[2].slice(0, -1));
+                lines[i] = lines[i].replace(
+                  listMarkerRegex,
+                  `\$1${nextNumber + 1}. `
+                );
+              } else {
+                break;
+              }
+            }
+          }
+          // 如果当前行有内容，可以在列表末尾追加新行（这里仅做示例，实际应用中可能需要根据具体逻辑调整）
+          model?.setValue(lines?.join("\n") as string);
+          editor.setPosition(
+            new monaco.Position(lineNumber + 1, newLinePrefix?.length + 1)
+          );
+        }
+      } else {
+        // lines.splice(lineNumber, 0, "");
+        // addLine(1);
+        editor.trigger("keyboard", "type", { text: "\n" });
+      }
+    });
+  };
+
+  const registerLeftOperate = (plugins: (() => JSX.Element)[]) => {
+    let leftPlugin = _.cloneDeep(leftOperate);
+    leftPlugin = [...leftPlugin, ...plugins];
+    ChangeLeftOperate(leftPlugin);
+  };
+
   return {
+    view,
+    leftOperate,
+    isFullScreen,
     editorConfig,
     markdown,
     monacoRef,
@@ -306,12 +407,16 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
     clearMonacoMarkdown,
     changeEditorConfig,
     insertText,
+    handleEditorDidMount,
     setSelection,
     getSelection,
     clearSelection,
     insertMarkdown,
     insertMarkdownHText,
     changeMarkdown: changeValue,
+    changeView,
+    changeIsFullScreen,
+    registerLeftOperate,
   };
 };
 

@@ -1,7 +1,26 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [
+        ".dumi/tmp/*"
+      ],
+      "react-monaco-markdown": [
+        "src"
+      ],
+      "react-monaco-markdown/*": [
+        "src/*",
+        "*"
+      ]
+    }
+  },
+  "include": [
+    ".dumirc.ts",
+    "src/**/*"
   ]
 }

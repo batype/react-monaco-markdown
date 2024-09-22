@@ -1,22 +1,68 @@
 {
-  "name": "react-next-md",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "react-monaco-markdown",
+  "version": "1.0.5",
+  "description": "this is react-monaco-markdown Component",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "npm run dev",
+    "dev": "dumi dev",
+    "build": "father build",
+    "build:watch": "father dev",
+    "docs:build": "dumi build",
+    "docs:preview": "dumi preview",
+    "prepare": "husky install && dumi setup",
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "prepublishOnly": "father doctor && npm run build",
+    "prodpublish": "npm run prepublishOnly && npm publish"
+  },
+  "authors": [
+    "8@batype.com"
+  ],
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "dependencies": {
     "@monaco-editor/loader": "^1.4.0",
     "@monaco-editor/react": "^4.6.0",
-    "@originjs/vite-plugin-global-style": "^1.0.3",
+    "@sindresorhus/tsconfig": "^6.0.0",
     "@types/lodash": "^4.17.7",
     "@types/node": "^22.5.5",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@types/uuid": "^10.0.0",
-    "@uiw/react-md-editor": "^4.0.4",
     "clsx": "^2.1.1",
     "eventemitter3": "^5.0.1",
     "github-markdown-css": "^5.6.1",
@@ -36,21 +82,27 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "unstated-next": "^1.1.0",
-    "uuid": "^10.0.0",
-    "vite-plugin-monaco-editor": "^1.1.0"
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.9.0",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.9",
-    "globals": "^15.9.0",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@umijs/lint": "^4.0.0",
+    "dumi": "^2.3.0",
+    "eslint": "^8.23.0",
+    "father": "^4.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.0",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "stylelint": "^14.9.1"
   },
-  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+  "config": {
+    "github": "https://github.com/batype/react-monaco-markdown.git"
+  }
 }

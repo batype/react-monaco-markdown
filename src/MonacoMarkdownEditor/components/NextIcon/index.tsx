@@ -1,8 +1,6 @@
-"use client";
-
-import clsx from "clsx";
-import { CSSProperties, MouseEventHandler } from "react";
-import "./iconfont.less";
+import clsx from 'clsx';
+import React, { CSSProperties, MouseEventHandler } from 'react';
+import './iconfont.less';
 
 type NextIconType = {
   type: string;
@@ -27,17 +25,18 @@ const NextIcon = ({
   // 直接基于传入的属性计算样式
   const calculatedStyle: CSSProperties = {
     fontSize: size || 12,
-    color: disable ? "rgba(0, 0, 0, 0.25)" : color,
+    color: disable ? 'rgba(0, 0, 0, 0.25)' : color,
   };
 
   return (
     <i
       title={title}
       onClick={onClick}
-      className={clsx("iconfont", "nb-icon-" + type, {
-        [className || ""]: !!className,
+      className={clsx('iconfont', 'nb-icon-' + type, {
+        [className || '']: !!className,
       })}
-      style={calculatedStyle}></i>
+      style={calculatedStyle}
+    ></i>
   );
 };
 

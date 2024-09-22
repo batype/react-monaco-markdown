@@ -7,7 +7,7 @@ import TableList from "./table";
 import { MonacoMarkdownEditorConText } from "../../context";
 
 export const Table = () => {
-  const pluginName = "table";
+  // const pluginName = "table";
   const { insertMarkdown, editorConfig } =
     MonacoMarkdownEditorConText.useContainer();
 

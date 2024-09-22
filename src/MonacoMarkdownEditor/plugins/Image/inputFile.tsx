@@ -1,5 +1,5 @@
 // TableList
-import * as React from 'react';
+import * as React from "react";
 
 interface InputFileProps {
   accept: string;
@@ -22,7 +22,7 @@ class InputFile extends React.Component<InputFileProps, any> {
       return;
     }
     this.locked = true;
-    this.input.current.value = '';
+    this.input.current.value = "";
     this.input.current.click();
     if (this.timerId) {
       window.clearTimeout(this.timerId);
@@ -43,11 +43,11 @@ class InputFile extends React.Component<InputFileProps, any> {
   render() {
     return (
       <input
-        type="file"
+        type='file'
         ref={this.input}
         accept={this.props.accept}
         style={{
-          position: 'absolute',
+          position: "absolute",
           zIndex: -1,
           left: 0,
           top: 0,
