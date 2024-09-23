@@ -1,21 +1,21 @@
-import React from "react";
-import ReactMarkdown, { Components } from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import React from 'react';
+import ReactMarkdown, { Components } from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
   materialDark,
   materialLight,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
+} from 'react-syntax-highlighter/dist/esm/styles/prism';
+import rehypeKatex from 'rehype-katex';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
-import "highlight.js/styles/github.css";
-import "katex/dist/katex.min.css";
-import "github-markdown-css";
-import "./index.css";
+import 'github-markdown-css';
+import 'highlight.js/styles/github.css';
+import 'katex/dist/katex.min.css';
+import './index.css';
 
 class ReactMarkdownProps {
-  code? = "" as any;
+  code? = '' as any;
   isToc? = false as boolean;
   id!: string;
 }
@@ -41,7 +41,7 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
 
   const components: Components | null | undefined = {
     code({ className, children }) {
-      const match = /language-(\w+)/.exec(className || "");
+      const match = /language-(\w+)/.exec(className || '');
       return match?.length ? (
         <>
           {/* {header(match, children)} */}
@@ -51,9 +51,10 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
             startingLineNumber={1}
             language={match[1]}
             style={styleMd.dark}
-            lineNumberStyle={{ color: "#ddd", fontSize: 16 }}
-            wrapLines={false}>
-            {children ? String(children).replace(/\n$/, "") : ""}
+            lineNumberStyle={{ color: '#ddd', fontSize: 16 }}
+            wrapLines={false}
+          >
+            {children ? String(children).replace(/\n$/, '') : ''}
           </SyntaxHighlighter>
         </>
       ) : (
@@ -63,13 +64,14 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
   };
 
   return (
-    <div className='flex'>
-      <div id={id} className='w-[100%]'>
+    <div className="flex">
+      <div id={id} className="w-[100%]">
         <ReactMarkdown
-          className='markdown-body dark:text-white font-color dark:bg-[#1A1A1A]'
+          className="markdown-body dark:text-white font-color dark:bg-[#1A1A1A]"
           remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[rehypeKatex]}
-          components={components}>
+          components={components}
+        >
           {code}
         </ReactMarkdown>
       </div>

@@ -1,6 +1,6 @@
 {
   "name": "react-monaco-markdown",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "this is react-monaco-markdown Component",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,15 +16,17 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "father doctor && npm run build",
-    "prodpublish": "npm run prepublishOnly && npm publish"
+    "prepublishOnly": "npm run doctor && npm run build",
+    "prodpublishOnly": "npm run prepublishOnly && npm publish"
   },
   "authors": [
     "8@batype.com"
   ],
   "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "examples",
+    "docs-dist"
   ],
   "commitlint": {
     "extends": [
@@ -102,7 +104,6 @@
     "react-dom": "^18.0.0",
     "stylelint": "^14.9.1"
   },
-  "config": {
-    "github": "https://github.com/batype/react-monaco-markdown.git"
-  }
+  "repository": "https://github.com/batype/react-monaco-markdown.git",
+  "homepage": "https://github.com/batype/react-monaco-markdown/blob/master/README.md"
 }

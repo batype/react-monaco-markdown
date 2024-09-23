@@ -31,22 +31,23 @@ export const ModeToggle = () => {
    * 如果都不可用，则返回当前状态
    */
   const next = (): NEXT_ACTION => {
-    const canView = editorConfig?.canView;
+    const canView = editorConfig?.view;
 
     const actions = [
       NEXT_ACTION.SHOW_ALL,
       NEXT_ACTION.SHOW_MD,
       NEXT_ACTION.SHOW_HTML,
     ];
-
-    if (!canView?.both) {
-      actions.splice(actions.indexOf(NEXT_ACTION.SHOW_ALL), 1);
-    }
-    if (!canView?.md) {
-      actions.splice(actions.indexOf(NEXT_ACTION.SHOW_MD), 1);
-    }
-    if (!canView?.html) {
-      actions.splice(actions.indexOf(NEXT_ACTION.SHOW_HTML), 1);
+    if (!!canView) {
+      if (canView?.both !== undefined && !canView?.both) {
+        actions.splice(actions.indexOf(NEXT_ACTION.SHOW_ALL), 1);
+      }
+      if (canView?.md !== undefined && !canView?.md) {
+        actions.splice(actions.indexOf(NEXT_ACTION.SHOW_MD), 1);
+      }
+      if (canView?.html !== undefined && !canView?.html) {
+        actions.splice(actions.indexOf(NEXT_ACTION.SHOW_HTML), 1);
+      }
     }
 
     let current = NEXT_ACTION.SHOW_MD;

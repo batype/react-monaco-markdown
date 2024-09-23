@@ -1,0 +1,1 @@
+<code src='../examples/index.tsx'>Markdown</code>

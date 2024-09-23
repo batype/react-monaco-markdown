@@ -2,10 +2,11 @@
  * @author shaosong
  * @description
  */
-import React from "react";
-import { MonacoMarkdownEditorConText } from "./context";
-import MonacoMarkdownEditorMain from "./EditorMain";
-import { EditorConfig } from "./share/var";
+import { editor } from 'monaco-editor';
+import React from 'react';
+import MonacoMarkdownEditorMain from './EditorMain';
+import { MonacoMarkdownEditorConText } from './context';
+import { EditorConfig } from './share/var';
 
 export type ReturnValue = {
   text?: string | undefined;
@@ -13,10 +14,15 @@ export type ReturnValue = {
 };
 
 export class IndexProps {
+  className?: string;
+  style?: React.CSSProperties;
   value?: string;
   onChange?: (pre: ReturnValue) => void;
   renderHtml?: (pre: ReturnValue) => React.ReactNode;
   config?: EditorConfig;
+  options?: editor.IStandaloneEditorConstructionOptions | undefined;
+  width?: number | string;
+  height?: number | string;
 }
 
 const Index: React.FC<IndexProps> = (props) => {
@@ -26,7 +32,7 @@ const Index: React.FC<IndexProps> = (props) => {
         <MonacoMarkdownEditorMain {...props} />
       </MonacoMarkdownEditorConText.Provider>
     ),
-    [props]
+    [props],
   );
 };
 

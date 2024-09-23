@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./table.less";
+import * as React from 'react';
+import './table.less';
 
 interface TableListProps {
   maxRow?: number;
@@ -28,8 +28,8 @@ const TableList: React.FC<TableListProps> = (props) => {
 
   const calcWrapStyle = () => {
     const { width, height, padding } = config;
-    const wrapWidth = (width + padding) * maxRow - padding;
-    const wrapHeight = (height + padding) * maxCol - padding;
+    const wrapWidth = (width + padding) * maxCol - padding;
+    const wrapHeight = (height + padding) * maxRow - padding;
     return {
       width: `${wrapWidth}px`,
       height: `${wrapHeight}px`,
@@ -43,7 +43,7 @@ const TableList: React.FC<TableListProps> = (props) => {
     if (props?.maxRow) {
       changeMaxRow(props?.maxRow);
     }
-    changeList(formatTableModel(props?.maxCol || 5, props?.maxRow || 6));
+    changeList(formatTableModel(props?.maxRow || 5, props?.maxCol || 6));
   }, [props?.maxCol, props?.maxRow]);
 
   const calcItemStyle = (row = 0, col = 0) => {
@@ -70,7 +70,7 @@ const TableList: React.FC<TableListProps> = (props) => {
 
   const handleSetTable = (i: number, j: number) => {
     const { onSetTable } = props;
-    if (typeof onSetTable === "function") {
+    if (typeof onSetTable === 'function') {
       onSetTable({
         row: i + 1,
         col: j + 1,
@@ -79,12 +79,12 @@ const TableList: React.FC<TableListProps> = (props) => {
   };
 
   return (
-    <ul className='table-list wrap' style={calcWrapStyle()}>
+    <ul className="table-list wrap" style={calcWrapStyle()}>
       {list.map((row, i) => {
         return row.map((col, j) => {
           return (
             <li
-              className={`list-item ${col === 1 ? "active" : ""}`}
+              className={`list-item ${col === 1 ? 'active' : ''}`}
               key={`${i}-${j}`}
               style={calcItemStyle(i, j)}
               onMouseOver={() => handleHover(i, j)}
