@@ -1,9 +1,9 @@
 {
   "name": "react-monaco-markdown",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "this is react-monaco-markdown Component",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
   "scripts": {
     "start": "npm run dev",
     "dev": "dumi dev",
@@ -16,8 +16,8 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "npm run doctor && npm run build",
-    "prodpublishOnly": "npm run prepublishOnly && npm publish"
+    "preReleaseOnly": "npm run doctor && npm run build",
+    "release": "npm run preReleaseOnly && npm publish"
   },
   "authors": [
     "8@batype.com"
@@ -76,6 +76,7 @@
     "monaco-editor": "^0.43.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-markdown": "^9.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "rehype": "^13.0.1",

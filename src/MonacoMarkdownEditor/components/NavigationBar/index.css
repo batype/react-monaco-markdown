@@ -1,0 +1,115 @@
+.monaco-markdown-editor .rc-md-navigation {
+  min-height: 38px;
+  padding: 0px 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background: #f5f5f5;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.monaco-markdown-editor .rc-md-navigation.dark {
+  background-color: #1e1e1e;
+}
+
+.monaco-markdown-editor .rc-md-navigation.in-visible {
+  display: none;
+}
+
+.monaco-markdown-editor .rc-md-navigation .navigation-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #757575;
+}
+
+.monaco-markdown-editor .rc-md-navigation .button-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.monaco-markdown-editor .rc-md-navigation .button-wrap .button {
+  position: relative;
+  min-width: 28px;
+  height: 28px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
+  line-height: 28px;
+  text-align: center;
+  color: #757575;
+  fill: #757575;
+}
+
+.monaco-markdown-editor .rc-md-navigation .button-wrap .button:hover {
+  color: #212121;
+  fill: #212121;
+  background: #bdbdbd;
+  border-radius: 8px;
+}
+
+.monaco-markdown-editor .rc-md-navigation .button-wrap .button.disabled {
+  color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.monaco-markdown-editor .rc-md-navigation .button-wrap .rmel-iconfont {
+  font-size: 18px;
+}
+
+.monaco-markdown-editor .rc-md-navigation ul,
+.monaco-markdown-editor .rc-md-navigation li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.monaco-markdown-editor .rc-md-navigation h1,
+.monaco-markdown-editor .rc-md-navigation h2,
+.monaco-markdown-editor .rc-md-navigation h3,
+.monaco-markdown-editor .rc-md-navigation h4,
+.monaco-markdown-editor .rc-md-navigation h5,
+.monaco-markdown-editor .rc-md-navigation h6,
+.monaco-markdown-editor .rc-md-navigation .h1,
+.monaco-markdown-editor .rc-md-navigation .h2,
+.monaco-markdown-editor .rc-md-navigation .h3,
+.monaco-markdown-editor .rc-md-navigation .h4,
+.monaco-markdown-editor .rc-md-navigation .h5,
+.monaco-markdown-editor .rc-md-navigation .h6 {
+  font-family: inherit;
+  font-weight: 500;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.monaco-markdown-editor .rc-md-navigation h1 {
+  font-size: 34px;
+}
+
+.monaco-markdown-editor .rc-md-navigation h2 {
+  font-size: 30px;
+}
+
+.monaco-markdown-editor .rc-md-navigation h3 {
+  font-size: 24px;
+}
+
+.monaco-markdown-editor .rc-md-navigation h4 {
+  font-size: 18px;
+}
+
+.monaco-markdown-editor .rc-md-navigation h5 {
+  font-size: 14px;
+}
+
+.monaco-markdown-editor .rc-md-navigation h6 {
+  font-size: 12px;
+}
+

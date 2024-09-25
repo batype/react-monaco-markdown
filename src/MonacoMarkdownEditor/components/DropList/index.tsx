@@ -1,5 +1,5 @@
-import * as React from "react";
-import "./index.less";
+import * as React from 'react';
+import './index.css';
 
 interface DropListProps {
   show: boolean;
@@ -11,14 +11,15 @@ const DropList: React.FC<DropListProps> = (props) => {
   const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
     const { onClose } = props;
-    if (typeof onClose === "function") {
+    if (typeof onClose === 'function') {
       onClose();
     }
   };
   return (
     <div
-      className={`drop-wrap ${props.show ? "show" : "hidden"}`}
-      onClick={handleClose}>
+      className={`drop-wrap ${props.show ? 'show' : 'hidden'}`}
+      onClick={handleClose}
+    >
       {props?.children}
     </div>
   );

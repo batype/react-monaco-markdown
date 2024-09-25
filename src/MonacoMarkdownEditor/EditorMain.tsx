@@ -4,7 +4,7 @@
  */
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
-import NextMarkdown from '../NextMarkdown';
+import NextMarkdownPreview from '../NextMarkdown';
 import Editor from './Editor';
 import NavigationBar from './components/NavigationBar';
 import { MonacoMarkdownEditorConText } from './context';
@@ -28,7 +28,7 @@ import { Logger } from './plugins/logger';
 import { ModeToggle } from './plugins/modeToggle';
 import { Operate } from './plugins/operate';
 import { Table } from './plugins/table';
-import './style.less';
+import './style.css';
 
 const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
   const {
@@ -68,6 +68,7 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
         className={clsx(
           'monaco-markdown-editor',
           props?.className,
+          editorConfig?.theme === 'vs-dark' && 'dark',
           isFullScreen && 'full',
         )}
         style={props?.style}
@@ -75,7 +76,12 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
         {(editorConfig?.view?.menu !== undefined
           ? editorConfig?.view?.menu
           : true) && (
-          <div className="header-tooltip">
+          <div
+            className={clsx(
+              'header-tooltip',
+              editorConfig?.theme === 'vs-dark' && 'dark',
+            )}
+          >
             <NavigationBar
               visible={true}
               left={leftOperate?.map((Item, index) => (
@@ -115,7 +121,10 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
             {props?.renderHtml ? (
               props?.renderHtml?.({ text: markdown })
             ) : (
-              <NextMarkdown id={''} code={markdown} />
+              <NextMarkdownPreview
+                theme={editorConfig?.theme}
+                code={markdown}
+              />
             )}
           </div>
         </div>

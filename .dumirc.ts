@@ -5,4 +5,8 @@ export default defineConfig({
   themeConfig: {
     name: 'react-monaco-markdown',
   },
+  cssMinifier: 'esbuild',
+  mfsu: {
+    esbuild: true,
+  },
 });

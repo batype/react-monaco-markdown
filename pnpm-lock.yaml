@@ -62,6 +62,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-helmet-async:
+        specifier: ^2.0.5
+        version: 2.0.5(react@18.3.1)
       react-markdown:
         specifier: ^9.0.1
         version: 9.0.1(@types/react@18.3.8)(react@18.3.1)
@@ -6143,6 +6146,11 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
 
+  react-helmet-async@2.0.5:
+    resolution: {integrity: sha512-rYUYHeus+i27MvFE+Jaa4WsyBKGkL6qVgbJvSBoX8mbsWoABJXdEO0bZyi0F6i+4f0NuIb8AvqPMj3iXFHkMwg==}
+    peerDependencies:
+      react: ^16.6.0 || ^17.0.0 || ^18.0.0
+
   react-intl@6.6.8:
     resolution: {integrity: sha512-M0pkhzcgV31h++2901BiRXWl69hp2zPyLxRrSwRjd1ErXbNoubz/f4M6DrRTd4OiSUrT4ajRQzrmtS5plG4FtA==}
     peerDependencies:
@@ -7928,8 +7936,8 @@ snapshots:
       '@commitlint/types': 17.8.1
       '@types/node': 20.5.1
       chalk: 4.1.2
-      cosmiconfig: 8.3.6(typescript@5.6.2)
-      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.3.3))(ts-node@10.9.2(@swc/core@1.4.2(@swc/helpers@0.5.1))(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2)
+      cosmiconfig: 8.3.6(typescript@5.3.3)
+      cosmiconfig-typescript-loader: 4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.6.2))(ts-node@10.9.2(@swc/core@1.4.2(@swc/helpers@0.5.1))(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -10421,10 +10429,10 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.3.3))(ts-node@10.9.2(@swc/core@1.4.2(@swc/helpers@0.5.1))(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2):
+  cosmiconfig-typescript-loader@4.4.0(@types/node@20.5.1)(cosmiconfig@8.3.6(typescript@5.6.2))(ts-node@10.9.2(@swc/core@1.4.2(@swc/helpers@0.5.1))(@types/node@20.5.1)(typescript@5.6.2))(typescript@5.6.2):
     dependencies:
       '@types/node': 20.5.1
-      cosmiconfig: 8.3.6(typescript@5.6.2)
+      cosmiconfig: 8.3.6(typescript@5.3.3)
       ts-node: 10.9.2(@swc/core@1.4.2(@swc/helpers@0.5.1))(@types/node@22.5.5)(typescript@5.3.3)
       typescript: 5.6.2
 
@@ -10436,14 +10444,14 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  cosmiconfig@8.3.6(typescript@5.6.2):
+  cosmiconfig@8.3.6(typescript@5.3.3):
     dependencies:
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 5.6.2
+      typescript: 5.3.3
 
   create-ecdh@4.0.4:
     dependencies:
@@ -15022,6 +15030,13 @@ snapshots:
       prop-types: 15.8.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+      react-fast-compare: 3.2.2
+      shallowequal: 1.1.0
+
+  react-helmet-async@2.0.5(react@18.3.1):
+    dependencies:
+      invariant: 2.2.4
+      react: 18.3.1
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
 

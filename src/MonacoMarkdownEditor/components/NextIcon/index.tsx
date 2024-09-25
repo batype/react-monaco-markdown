@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import React, { CSSProperties, MouseEventHandler } from 'react';
-import './iconfont.less';
+import './iconfont.css';
 
 type NextIconType = {
   type: string;

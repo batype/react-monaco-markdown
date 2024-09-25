@@ -1,6 +1,6 @@
 // HeaderList
 import React from 'react';
-import './HeaderList.less';
+import './HeaderList.css';
 
 interface HeaderListProps {
   onSelectHeader?: (header: number) => void;

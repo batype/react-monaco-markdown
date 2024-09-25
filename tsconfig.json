@@ -2,8 +2,10 @@
   "compilerOptions": {
     "strict": true,
     "declaration": true,
+    "declarationDir": "dist",
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "outDir": "dist",
     "jsx": "react",
     "baseUrl": "./",
     "paths": {

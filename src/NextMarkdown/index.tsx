@@ -2,31 +2,25 @@ import React from 'react';
 import ReactMarkdown, { Components } from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import {
-  materialDark,
   materialLight,
+  vscDarkPlus,
 } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
-import 'github-markdown-css';
+import clsx from 'clsx';
 import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
+import './github-markdown.css';
 import './index.css';
 
 class ReactMarkdownProps {
   code? = '' as any;
-  isToc? = false as boolean;
-  id!: string;
+  theme?: 'vs-light' | 'vs-dark';
 }
-// materialDark,
-// materialLight
-const styleMd = {
-  dark: materialDark,
-  light: materialLight,
-};
 
-const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
+const NextMarkdownPreview: React.FC<ReactMarkdownProps> = ({ code, theme }) => {
   // const header = (match, children) => (
   //   <div className="flex justify-between leading-8">
   //     <div className="pl-4 dark:text-white">
@@ -50,7 +44,7 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
             showLineNumbers={true}
             startingLineNumber={1}
             language={match[1]}
-            style={styleMd.dark}
+            style={theme === 'vs-dark' ? vscDarkPlus : materialLight}
             lineNumberStyle={{ color: '#ddd', fontSize: 16 }}
             wrapLines={false}
           >
@@ -65,9 +59,12 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
 
   return (
     <div className="flex">
-      <div id={id} className="w-[100%]">
+      <div className="w-[100%]">
         <ReactMarkdown
-          className="markdown-body dark:text-white font-color dark:bg-[#1A1A1A]"
+          className={clsx(
+            'markdown-body',
+            theme === 'vs-dark' ? 'dark' : 'light',
+          )}
           remarkPlugins={[remarkMath, remarkGfm]}
           rehypePlugins={[rehypeKatex]}
           components={components}
@@ -79,4 +76,4 @@ const NextMarkdown: React.FC<ReactMarkdownProps> = ({ code, id }) => {
   );
 };
 
-export default NextMarkdown;
+export default NextMarkdownPreview;

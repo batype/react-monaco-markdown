@@ -16,6 +16,7 @@
   font-size: 19px;
   font-weight: 900;
 }
+
 .markdown-body h2 {
   font-size: 18px;
   font-weight: 800;
@@ -54,6 +55,7 @@
   border-bottom: 1px solid #eaecef;
   padding-bottom: .3em;
 }
+
 .markdown-body h1,
  .markdown-body h2,
  .markdown-body h3,
@@ -74,10 +76,12 @@
   margin-left: -20px;
   line-height: 1;
 }
+
 .markdown-body .octicon-link {
   visibility: hidden;
   vertical-align: middle;
 }
+
 .markdown-body h1:hover .octicon-link,
 .markdown-body h2:hover .octicon-link,
 .markdown-body h3:hover .octicon-link,
@@ -111,6 +115,6 @@
 }
 
 .markdown-body pre pre {
-  padding: 16px !important;
+  padding: 0 !important;
   margin: 0 !important;
 }

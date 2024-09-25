@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './table.less';
+import './table.css';
 
 interface TableListProps {
   maxRow?: number;

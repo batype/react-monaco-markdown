@@ -19,7 +19,7 @@ const Mrakdown: React.FC<MrakdownProps> = () => {
             view: {
               menu: true,
             },
-            theme: 'vs-dark',
+            theme: 'vs-light',
             table: {
               maxCol: 4,
               maxRow: 5,

@@ -1,4 +1,4 @@
-import { repeat } from "./tool";
+import { repeat } from './tool';
 
 export interface SelectionType {
   start?: number;
@@ -13,17 +13,17 @@ export interface Decorated {
 
 // 最简单的Decorator，即在现有文字的基础上加上前缀、后缀即可
 const SIMPLE_DECORATOR: { [x: string]: [string, string] } = {
-  bold: ["**", "**"],
-  italic: ["*", "*"],
-  underline: ["__", "__"],
-  strikethrough: ["~~", "~~"],
-  quote: ["\n> ", "\n"],
-  inlinecode: ["`", "`"],
-  code: ["\n```\n", "\n```\n"],
+  bold: ['**', '**'],
+  italic: ['*', '*'],
+  underline: ['__', '__'],
+  strikethrough: ['~~', '~~'],
+  quote: ['\n> ', '\n'],
+  inlinecode: ['`', '`'],
+  code: ['\n```\n', '\n```\n'],
 };
 // 插入H1-H6
 for (let i = 1; i <= 6; i++) {
-  SIMPLE_DECORATOR[`h${i}`] = [`\n${repeat("#", i)} `, "\n"];
+  SIMPLE_DECORATOR[`h${i}`] = [`\n${repeat('#', i)} `, '\n'];
 }
 
 const lineCheck: {
@@ -53,28 +53,28 @@ const lineCheck: {
 
 function decorateTableText(option: any) {
   const { row = 2, col = 2 } = option;
-  const rowHeader = ["|"];
-  const rowData = ["|"];
-  const rowDivision = ["|"];
-  let colStr = "";
+  const rowHeader = ['|'];
+  const rowData = ['|'];
+  const rowDivision = ['|'];
+  let colStr = '';
   for (let i = 1; i <= col; i++) {
-    rowHeader.push(" Head |");
-    rowDivision.push(" --- |");
-    rowData.push(" Data |");
+    rowHeader.push(' Head |');
+    rowDivision.push(' --- |');
+    rowData.push(' Data |');
   }
   for (let j = 1; j <= row; j++) {
-    colStr += "\n" + rowData.join("");
+    colStr += '\n' + rowData.join('');
   }
-  return `\n${rowHeader.join("")}\n${rowDivision.join("")}${colStr}\n`;
+  return `\n${rowHeader.join('')}\n${rowDivision.join('')}${colStr}\n`;
 }
 
-function decorateList(type: "order" | "unordered", target: string) {
+function decorateList(type: 'order' | 'unordered', target: string) {
   let text = target;
-  if (text.indexOf("\n") !== 0) {
-    text = "\n" + text;
+  if (text.indexOf('\n') !== 0) {
+    text = '\n' + text;
   }
-  if (type === "unordered") {
-    return text.replace(/\n/g, "\n* ");
+  if (type === 'unordered') {
+    return text.replace(/\n/g, '\n- ');
   } else {
     let count = 1;
     return text.replace(/\n/g, () => {
@@ -91,7 +91,7 @@ function decorateList(type: "order" | "unordered", target: string) {
  * @returns {Decorated}
  */
 function getDecorated(target: string, type: string, option?: any): Decorated {
-  if (typeof SIMPLE_DECORATOR[type] !== "undefined") {
+  if (typeof SIMPLE_DECORATOR[type] !== 'undefined') {
     return {
       text: `${SIMPLE_DECORATOR[type][0]}${target}${SIMPLE_DECORATOR[type][1]}`,
       selection: {
@@ -102,45 +102,45 @@ function getDecorated(target: string, type: string, option?: any): Decorated {
     };
   }
   switch (type) {
-    case "unordered":
+    case 'unordered':
       return {
-        text: decorateList("unordered", target),
+        text: decorateList('unordered', target),
         selection: {
           line: lineCheck[type]?.line || 0,
         },
       };
-    case "order":
+    case 'order':
       return {
-        text: decorateList("order", target),
+        text: decorateList('order', target),
         selection: {
           line: lineCheck[type]?.line || 0,
         },
       };
-    case "hr":
+    case 'hr':
       return {
-        text: "\n---\n",
+        text: '\n---\n',
         selection: {
           line: lineCheck[type]?.line || 0,
         },
       };
-    case "table":
+    case 'table':
       return {
         text: decorateTableText(option),
         selection: {
           line: lineCheck[type]?.line || 0,
         },
       };
-    case "image":
+    case 'image':
       return {
-        text: `![${target || option.target}](${option.imageUrl || ""})`,
+        text: `![${target || option.target}](${option.imageUrl || ''})`,
         selection: {
           start: 2,
           end: target.length + 2,
         },
       };
-    case "link":
+    case 'link':
       return {
-        text: `[${target}](${option.linkUrl || ""})`,
+        text: `[${target}](${option.linkUrl || ''})`,
         selection: {
           start: 1,
           end: target.length + 1,
