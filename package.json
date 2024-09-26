@@ -1,6 +1,6 @@
 {
   "name": "react-monaco-markdown",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "this is react-monaco-markdown Component",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",

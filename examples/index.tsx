@@ -9,7 +9,7 @@ export class MrakdownProps {}
 
 const Mrakdown: React.FC<MrakdownProps> = () => {
   const [value, changeValue] = useState<string | undefined>(
-    '# React Monaco markdown \n\nHello, React engineer, welcome to use React Monaco markdown!!!',
+    '',
   );
   return React.useMemo(
     () => (
@@ -35,7 +35,7 @@ const Mrakdown: React.FC<MrakdownProps> = () => {
             //   };
             // },
           }}
-          value={value}
+          value={''}
           onChange={(pre) => {
             changeValue(pre?.text);
             console.log(pre?.text);

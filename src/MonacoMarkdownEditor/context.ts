@@ -15,7 +15,7 @@ import {
 import getDecorated, { Decorated, SelectionType } from './utils/decorate';
 
 const initMarkdown =
-  '# React Monaco markdown \n\nHello, React engineer, welcome to use React Monaco markdown!!!';
+  "# React Monaco markdown 基本使用\n\nHello, React engineer, welcome to use React Monaco markdown!!!\n\n# h1\n\n## h2\n\n### h3\n\n#### h4\n\n##### h5\n\n###### h6\n\n**加粗**\n\n*斜体*\n\n__下划线__\n\n~~删除线~~\n\n## 有序列表\n\n1. 有序列表1\n2. 有序列表2\n3. 有序列表3\n4. 有序列表4\n5. \n\n## 无序列表\n\n- 无序列表1\n- 无序列表2\n- 无序列表3\n- 无序列表4\n\n> 这是引用，这是引用，这是引用\n\n这是分割线\n\n---\n\n`console.log('这是一行代码！')`\n\n```ts\nfunction demo() {\n    const log = '这是代码块';\n    console.log(log)\n}\n\ndemo()\n```\n\n## 这是表格\n\n| Head | Head | Head |\n| --- | --- | --- |\n| Data | Data | Data |\n| Data | Data | Data |\n\n![这是一张图片](https://pic.imgdb.cn/item/667294d5d9c307b7e9633cbb.png)\n\n[batype 的网站链接](https://next.batype.com)\n";
 
 const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
   const [markdown, changeMarkdown] = useState<string | undefined>(initMarkdown);
@@ -40,6 +40,9 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
   useEffect(() => {
     if (props?.value && !_.isEqual(markdown, props?.value)) {
       changeMarkdown(props?.value);
+    }
+    if (props?.value === undefined || !props?.value) {
+      changeMarkdown(initMarkdown);
     }
   }, [props?.value]);
 

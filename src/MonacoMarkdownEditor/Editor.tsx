@@ -44,6 +44,11 @@ function Editor({ width, height, isReadOnly, theme, options }: Props) {
       }}
       onMount={handleEditorDidMount}
       options={{
+        scrollbar: {
+          verticalSliderSize: 7,
+          horizontalScrollbarSize: 7,
+          arrowSize: 7,
+        },
         theme: theme || 'vs-light', // 编辑器主题颜色
         folding: true, // 是否折叠
         foldingHighlight: true, // 折叠等高线
