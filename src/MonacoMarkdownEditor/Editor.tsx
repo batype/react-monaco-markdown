@@ -37,7 +37,6 @@ function Editor({ width, height, isReadOnly, theme, options }: Props) {
       width={width || '100%'}
       value={markdown}
       height={height || '100%'}
-      defaultValue='const aaa="bbbbxxx"'
       onChange={(value: string | undefined) => {
         if (changeMarkdown && !isEqual(markdown, value))
           changeMarkdown?.(value);

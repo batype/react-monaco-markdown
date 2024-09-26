@@ -1,33 +1,32 @@
 {
   "name": "react-monaco-markdown",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "this is react-monaco-markdown Component",
+  "homepage": "https://github.com/batype/react-monaco-markdown/blob/master/README.md",
+  "repository": "https://github.com/batype/react-monaco-markdown.git",
+  "license": "MIT",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
-  "scripts": {
-    "start": "npm run dev",
-    "dev": "dumi dev",
-    "build": "father build",
-    "build:watch": "father dev",
-    "docs:build": "dumi build",
-    "docs:preview": "dumi preview",
-    "prepare": "husky install && dumi setup",
-    "doctor": "father doctor",
-    "lint": "npm run lint:es && npm run lint:css",
-    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
-    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-    "preReleaseOnly": "npm run doctor && npm run build",
-    "release": "npm run preReleaseOnly && npm publish"
-  },
-  "authors": [
-    "8@batype.com"
-  ],
-  "license": "MIT",
   "files": [
     "dist",
     "examples",
     "docs-dist"
   ],
+  "scripts": {
+    "build": "father build",
+    "build:watch": "father dev",
+    "dev": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:preview": "dumi preview",
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "preReleaseOnly": "npm run doctor && npm run build",
+    "prepare": "husky install && dumi setup",
+    "release": "npm run preReleaseOnly && npm publish",
+    "start": "npm run dev"
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
@@ -49,13 +48,6 @@
       "eslint --fix",
       "prettier --parser=typescript --write"
     ]
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
   },
   "dependencies": {
     "@monaco-editor/loader": "^1.4.0",
@@ -105,6 +97,15 @@
     "react-dom": "^18.0.0",
     "stylelint": "^14.9.1"
   },
-  "repository": "https://github.com/batype/react-monaco-markdown.git",
-  "homepage": "https://github.com/batype/react-monaco-markdown/blob/master/README.md"
+  "peerDependencies": {
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
+  },
+  "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631",
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "8@batype.com"
+  ]
 }

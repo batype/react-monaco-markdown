@@ -25,6 +25,7 @@ import { Link } from './plugins/link';
 import { ListOrdered } from './plugins/list/ordered';
 import { ListUnordered } from './plugins/list/unordered';
 import { Logger } from './plugins/logger';
+import { Mail } from './plugins/mail';
 import { ModeToggle } from './plugins/modeToggle';
 import { Operate } from './plugins/operate';
 import { Table } from './plugins/table';
@@ -56,6 +57,7 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
       Table,
       Image,
       Link,
+      Mail,
       Clear,
       Logger,
       Operate,
@@ -98,6 +100,7 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
           <div
             className={clsx(
               'editor-content-left',
+              editorConfig?.theme === 'vs-dark' && 'dark',
               !view?.md && 'hidden',
               view?.md && !view?.html && 'w-full',
             )}
@@ -113,6 +116,7 @@ const MonacoMarkdownEditorMain: React.FC<IndexProps> = (props) => {
           <div
             className={clsx(
               'editor-content-right',
+              editorConfig?.theme === 'vs-dark' && 'dark',
               editorConfig?.htmlClass,
               !view?.html && 'hidden',
               !view?.md && view?.html && 'w-full',

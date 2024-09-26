@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .box {
+      width: 500px;
+      height: 300px;
+      background-color: #ccc;
+    }
+    .code {
+      width: 300px;
+    }
+
+    .box:hover .copy {
+      display: block;
+    }
+
+    .copy {
+      display: none;
+    }
+  </style>
+  <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      console.log('复制成功');
+    });
+  </script>
+  <body>
+    <div class="box">
+      <code class="code">console.log('鼠标移入展示')</code>
+      <span id="copy" class="copy"> 复制按钮 </span>
+    </div>
+  </body>
+</html>

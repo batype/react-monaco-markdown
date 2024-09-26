@@ -36,6 +36,10 @@
   overflow-y: auto;
 }
 
+.monaco-markdown-editor .editor-content .editor-content-left.dark {
+  background-color: #1e1e1e;
+}
+
 .monaco-markdown-editor .editor-content .editor-content-left.hidden {
   display: none;
 }
@@ -48,6 +52,10 @@
   width: 50%;
   overflow-y: auto;
   padding: 16px;
+}
+
+.monaco-markdown-editor .editor-content .editor-content-right.dark {
+  background-color: #1e1e1e;
 }
 
 .monaco-markdown-editor .editor-content .editor-content-right.hidden {

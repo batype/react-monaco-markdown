@@ -1,0 +1,7 @@
+.h-box:hover a {
+  visibility: visible;
+}
+
+.h-box a {
+  visibility: hidden;
+}
