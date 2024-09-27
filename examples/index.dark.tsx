@@ -7,8 +7,8 @@ import MonacoMarkdownEditor from '../src/index';
 
 export class MrakdownProps {}
 
-const Mrakdown: React.FC<MrakdownProps> = () => {
-  const [value, changeValue] = useState<string | undefined>(undefined);
+const MrakdownDark: React.FC<MrakdownProps> = () => {
+  const [value, changeValue] = useState<string | undefined>('');
   return React.useMemo(
     () => (
       <div>
@@ -17,21 +17,11 @@ const Mrakdown: React.FC<MrakdownProps> = () => {
             view: {
               menu: true,
             },
-            theme: 'vs-light',
+            theme: 'vs-dark',
             table: {
               maxCol: 4,
               maxRow: 5,
             },
-            linkUrl: 'https://next.batype.com',
-            // onImageUpload: async (file) => {
-            //   console.log('file', file);
-            // },
-            // onCustomImageUpload: async (_pre) => {
-            //   return {
-            //     url: 'https://imgage.batype.com/image/12hajsdkashd.png',
-            //     text: 'ssss',
-            //   };
-            // },
           }}
           value={value}
           onChange={(pre) => {
@@ -45,4 +35,4 @@ const Mrakdown: React.FC<MrakdownProps> = () => {
   );
 };
 
-export default Mrakdown;
+export default MrakdownDark;
