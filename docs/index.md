@@ -7,6 +7,11 @@ hero:
       link: /used
     - text: 操作手册
       link: /operate
+  headers:
+    - text: 快速开始
+      link: /used
+    - text: API
+      link: /operate
 # features:
 #   - title: Hello
 #     emoji: 💎

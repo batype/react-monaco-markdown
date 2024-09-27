@@ -1,4 +1,4 @@
-import MonacoMarkdownEditor from './MonacoMarkdownEditor/index';
+import MonacoMarkdownEditor, { IndexProps } from './MonacoMarkdownEditor/index';
 import { Image } from './MonacoMarkdownEditor/plugins/Image/index';
 import { BlockCodeBlock } from './MonacoMarkdownEditor/plugins/block/code-block';
 import { BlockCodeInline } from './MonacoMarkdownEditor/plugins/block/code-inline';
@@ -17,7 +17,9 @@ import { ListUnordered } from './MonacoMarkdownEditor/plugins/list/unordered';
 import { Logger } from './MonacoMarkdownEditor/plugins/logger';
 import { ModeToggle } from './MonacoMarkdownEditor/plugins/modeToggle';
 import { Table } from './MonacoMarkdownEditor/plugins/table';
-import NextMarkdownPreview from './NextMarkdown';
+import NextMarkdownPreview, {
+  NextMarkdownPreviewOptions,
+} from './NextMarkdown';
 
 // 导出声明
 // 导出工具组件
@@ -25,6 +27,12 @@ export { default as DropList } from './MonacoMarkdownEditor/components/DropList/
 // 导出实用工具
 export { default as getDecorated } from './MonacoMarkdownEditor/utils/decorate';
 export { NextMarkdownPreview };
+
+// 导出类型
+export type {
+  IndexProps as MonacoMarkdownEditorOptions,
+  NextMarkdownPreviewOptions,
+};
 // 导出内置插件
 export const Plugins = {
   Header,
