@@ -41,7 +41,7 @@ const Mrakdown: React.FC<MrakdownProps> = () => {
         />
       </div>
     ),
-    [],
+    [value],
   );
 };
 

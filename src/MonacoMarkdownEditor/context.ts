@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Monaco, useMonaco } from '@monaco-editor/react';
-import _ from 'lodash';
+import _, { isEmpty } from 'lodash';
 import { IRange, Selection, editor } from 'monaco-editor';
 import React, { useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
@@ -38,21 +38,21 @@ const useMonacoMarkdownEditorConText = (props?: IndexProps) => {
   const monacoRef = React.useRef<any>();
 
   useEffect(() => {
-    if (props?.value && !_.isEqual(markdown, props?.value)) {
-      changeMarkdown(props?.value);
-      return;
-    }
+    // 等于 undefined 时，走默认值
     if (props?.value === undefined) {
       changeMarkdown(initMarkdown);
       return;
     }
 
-    if (!props?.value) {
-      changeMarkdown(props?.value);
+    // 清空 markdown
+    if (isEmpty(props?.value)) {
+      changeMarkdown('');
       return;
     }
-    if (props?.value !== undefined) {
-      changeMarkdown('');
+
+    if (props?.value && !_.isEqual(markdown, props?.value)) {
+      changeMarkdown(props?.value);
+      return;
     }
   }, [props?.value]);
 
