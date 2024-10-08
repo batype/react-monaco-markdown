@@ -1,5 +1,5 @@
 .next-markdown-previewer {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .next-markdown-previewer .flex {
@@ -215,6 +215,6 @@
 }
 
 .markdown-body pre pre {
-  padding: 8px 0 !important;
+  padding: 8px 8px !important;
   margin: 0 !important;
 }

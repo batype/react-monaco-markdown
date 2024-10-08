@@ -4,4 +4,10 @@
 
 .h-box a {
   visibility: hidden;
+  display: contents;
+}
+
+.h-box {
+  display: flex;
+  align-items: center;
 }
