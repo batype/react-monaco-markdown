@@ -13,6 +13,7 @@ import clsx from 'clsx';
 import 'highlight.js/styles/github.css';
 import 'katex/dist/katex.min.css';
 import { Options } from 'react-markdown/lib';
+import rehypeRaw from 'rehype-raw';
 import CopyButton from '../MonacoMarkdownEditor/components/CopyButton';
 import {
   H1,
@@ -92,7 +93,7 @@ const NextMarkdownPreview: React.FC<NextMarkdownPreviewOptions> = ({
               theme === 'vs-dark' ? 'dark' : 'light',
             )}
             remarkPlugins={props?.remarkPlugins || [remarkMath, remarkGfm]}
-            rehypePlugins={props?.rehypePlugins || [rehypeKatex]}
+            rehypePlugins={props?.rehypePlugins || [rehypeKatex, rehypeRaw]}
             components={props?.components || components}
             urlTransform={props?.urlTransform}
             unwrapDisallowed={props?.unwrapDisallowed}
